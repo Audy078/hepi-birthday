@@ -1,0 +1,419 @@
+/* ===== RESET & BASE ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  user-select: none;
+}
+
+body {
+  background-color: #f7f2e3;
+  background-image: url('gambar/bg.png');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  font-family: 'Segoe UI', 'Quicksand', system-ui, -apple-system, 'Georgia', cursive, sans-serif;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  position: relative;
+  color: #1a2a3f;
+}
+
+/* ===== APP ===== */
+.app {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+}
+
+/* ===== PAGES ===== */
+.page {
+  position: absolute;
+  width: 100%;
+  max-width: 650px;
+  margin: 0 auto;
+  background: rgba(250, 245, 233, 0.92);
+  backdrop-filter: blur(4px);
+  border-radius: 48px;
+  padding: 2rem 1.8rem;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255, 255, 240, 0.8);
+  transition: opacity 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.1), transform 0.4s ease;
+  opacity: 0;
+  transform: scale(0.96) translateY(12px);
+  pointer-events: none;
+  text-align: center;
+  border: 1px solid #ece3d8;
+  max-height: 92vh;
+  overflow-y: auto;
+}
+
+.page.active {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+  pointer-events: auto;
+}
+
+.page::-webkit-scrollbar {
+  width: 4px;
+}
+.page::-webkit-scrollbar-track {
+  background: transparent;
+}
+.page::-webkit-scrollbar-thumb {
+  background: #d4c8b8;
+  border-radius: 10px;
+}
+
+/* ===== TYPOGRAPHY ===== */
+h1, h2, h3 {
+  font-weight: 600;
+  letter-spacing: -0.3px;
+  color: #1e2f41;
+}
+
+h1 {
+  font-size: 2.4rem;
+  margin-bottom: 0.3rem;
+}
+
+h2 {
+  font-size: 1.9rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 2px dashed #b7aa8f;
+  display: inline-block;
+  padding-bottom: 6px;
+}
+
+/* ===== WELCOME ===== */
+.page-welcome h1 {
+  display: inline-block;
+  font-size: 2.45rem;
+  line-height: 1.1;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: #24364c;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.7), 0 2px 6px rgba(243, 167, 196, 0.16);
+  position: relative;
+  padding: 0 0.35rem 0.2rem;
+}
+
+.page-welcome h1::before,
+.page-welcome h1::after {
+  content: '✦';
+  position: absolute;
+  top: -0.65rem;
+  font-size: 0.7rem;
+  color: #f3a7c4;
+  text-shadow: 0 0 6px rgba(243, 167, 196, 0.55);
+  pointer-events: none;
+  animation: titleSparkle 1.8s ease-in-out infinite;
+}
+.page-welcome h1::before { left: 8%; }
+.page-welcome h1::after { right: 8%; color: #c6d8ff; text-shadow: 0 0 6px rgba(198, 216, 255, 0.55); animation-delay: 0.4s; }
+
+@keyframes titleSparkle {
+  0%, 100% { transform: scale(0.92) rotate(0deg); opacity: 0.7; }
+  50% { transform: scale(1.15) rotate(18deg); opacity: 1; }
+}
+
+.welcome-image { display: flex; justify-content: center; align-items: center; margin: 0.15rem 0 0.2rem 0; }
+.welcome-img-1 { max-width: 220px; width: 72%; height: auto; object-fit: contain; }
+.welcome-img-2 {
+  max-width: 180px;
+  width: 72%;
+  height: auto;
+  object-fit: contain;
+  animation: floatWelcome2 2.6s ease-in-out infinite;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+.welcome-img-2:hover { transform: translateY(-2px) scale(1.06); }
+
+@keyframes floatWelcome2 {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-6px) scale(1.02); }
+}
+.welcome-note { font-size: 0.82rem; color: #6b5f52; margin-top: -0.05rem; letter-spacing: 0.2px; }
+
+/* ===== MAKE A WISH PAGE ===== */
+.wish-instruction-text { font-size: 1rem; color: #5a4f43; margin-bottom: 1.5rem; line-height: 1.5; }
+.wish-form { display: flex; gap: 0.5rem; align-items: center; justify-content: center; width: 100%; max-width: 420px; margin: 0 auto; }
+.wish-input {
+  flex: 1;
+  min-width: 0;
+  border: 1px solid #dfd3c2;
+  background: #fffaf2;
+  color: #1e2f41;
+  border-radius: 999px;
+  padding: 0.75rem 1rem;
+  font: inherit;
+  font-size: 0.95rem;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  outline: none;
+}
+.wish-input::placeholder { color: #9b8f83; }
+.wish-input:focus { border-color: #c0b39b; box-shadow: 0 0 0 3px rgba(192, 179, 155, 0.2); }
+
+.wish-submit {
+  border-radius: 999px;
+  background: #ede6db;
+  color: #1e3b4f;
+  font: inherit;
+  font-weight: 600;
+  padding: 0.75rem 1.2rem;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  border: none;
+  transition: background 0.2s;
+}
+.wish-submit:hover { background: #dfd3c2; }
+
+/* ===== CAKE / BLOW CANDLES PAGE ===== */
+.page-gif { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem; }
+.gif-stage { width: 100%; display: flex; justify-content: center; align-items: center; }
+.cake-wrap { position: relative; display: flex; justify-content: center; align-items: center; width: fit-content; line-height: 0; cursor: pointer; }
+.gif-image { width: min(78%, 320px); max-width: 320px; display: block; margin: 0 auto; border-radius: 28px; box-shadow: 0 10px 22px rgba(0, 0, 0, 0.08); }
+
+.flame-cover {
+  position: absolute;
+  top: 19%;
+  width: 7.5%;
+  height: 10%;
+  min-width: 18px;
+  min-height: 26px;
+  border-radius: 999px;
+  background: #f8f2e6;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.25s ease;
+  pointer-events: none;
+}
+.flame-cover-1 { left: 22%; }
+.flame-cover-2 { left: 42%; }
+.flame-cover-3 { left: 63%; }
+.flame-cover-4 { left: 83%; }
+.candles-out .flame-cover { opacity: 1; }
+
+.wish-instruction-btn {
+  background: #fffefe;
+  border-radius: 999px;
+  padding: 0.5rem 1.2rem;
+  font-weight: 600;
+  color: #352f2a;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.06);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ===== MENU ===== */
+.gift-menu { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.8rem; margin: 1.5rem 0; }
+.gift-card {
+  background: #fffcf7;
+  border-radius: 32px;
+  padding: 1.5rem 0.8rem;
+  width: 120px;
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.04), 0 0 0 1.5px #e2d9ce;
+  text-align: center;
+  border: none;
+}
+.gift-card:hover { transform: translateY(-6px) scale(1.02); box-shadow: 0 14px 28px rgba(0, 0, 0, 0.08), 0 0 0 2px #c0b39b; }
+.gift-card:active { transform: scale(0.96); }
+.gift-emoji-img { width: 72px; height: 72px; object-fit: cover; display: block; border-radius: 18px; margin: 0 auto; }
+.gift-card p { font-weight: 600; margin-top: 0.6rem; color: #2e4a6b; font-size: 1rem; letter-spacing: 0.5px; }
+
+/* ===== PHOTO PAGE ===== */
+.page-photo { text-align: center; padding: 1.5rem 1.2rem; }
+.page-photo h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1e2f41;
+  margin-bottom: 0.8rem;
+  border-bottom: none;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  display: block;
+  font-family: 'Georgia', 'Segoe UI', serif;
+}
+.photo-grid { display: flex; flex-direction: column; gap: 12px; width: 100%; }
+.landscape-full { width: 100%; }
+.polaroid-grid {
+  background: #fffef7;
+  padding: 10px 10px 12px 10px;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06), 0 0 0 1px #ece0cf;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.photo-landscape { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 10px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); border: 2px solid #ffffff; display: block; }
+.square-row { display: flex; gap: 12px; width: 100%; justify-content: space-between; }
+.square-item { flex: 1; min-width: 0; width: 100%; }
+.photo-square { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 10px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); border: 2px solid #ffffff; display: block; }
+.photo-subtitle { font-size: 0.95rem; color: #7a6a58; font-style: italic; margin-top: 0.8rem; margin-bottom: 0.3rem; font-weight: 400; letter-spacing: 0.5px; font-family: 'Georgia', 'Segoe UI', serif; }
+
+/* ===== BACK BUTTON ===== */
+.back-row { margin-top: 0.8rem; display: flex; justify-content: center; }
+.back-btn {
+  background: #ede6db;
+  border: none;
+  font-size: 0.8rem;
+  padding: 0.4rem 1.6rem;
+  border-radius: 60px;
+  font-weight: 600;
+  color: #1e3b4f;
+  cursor: pointer;
+  transition: 0.2s;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  text-transform: uppercase;
+}
+.back-btn:hover { background: #dfd3c2; transform: translateY(-2px); }
+.back-btn:active { transform: scale(0.95); }
+
+
+/* ===================================================
+   ===== UPDATE: HALAMAN KERTAS SURAT MENGGUNAKAN GAMBAR =====
+   =================================================== */
+.page-message {
+  padding: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  max-width: 450px !important; /* Membuat batas maksimal proporsional */
+  width: 90% !important;
+}
+
+/* Wadah relatif untuk menumpuk gambar dan teks */
+.custom-letter-box {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+/* Elemen Gambar Kertas Surat Utama */
+.letter-bg-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* LAYER TEKS: Menggunakan kode awal yang diturunkan posisinya secara pas */
+.page-message .typewriter {
+  position: absolute;
+  top: 26%;       /* Diturunkan dari kode awal agar pas di tengah kertas cokelat */
+  left: 14%;      /* Jarak aman kiri kertas */
+  right: 14%;     /* Jarak aman kanan kertas */
+  bottom: 14%;    /* Batas aman bawah kertas */
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  overflow-y: auto; 
+  text-align: left;
+}
+
+/* Kustomisasi Teks Surat */
+.page-message .typewriter p {
+  font-size: 1rem;
+  line-height: 1.6;
+  font-family: 'Quicksand', 'Georgia', sans-serif;
+  font-weight: 600;
+  color: #3d3123; 
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* Indikator kursor ketik */
+.page-message .typewriter p .cursor-blink {
+  display: inline-block;
+  width: 2px;
+  height: 1.2em;
+  background: #544432;
+  margin-left: 2px;
+  animation: blink 0.8s step-end infinite;
+  vertical-align: text-bottom;
+}
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+/* Tombol kembali yang disesuaikan dengan warna surat */
+.back-btn-letter {
+  margin-top: 1.2rem;
+  background: #ede3ce !important;
+  border: 1px solid #dcd1b8 !important;
+  color: #544535 !important;
+}
+.back-btn-letter:hover { background: #e2d7be !important; }
+
+
+/* ===== RESPONSIVE UTK DISPLAY MOBILE ===== */
+@media (max-width: 550px) {
+  .page { padding: 1.5rem 1.2rem; width: 92%; border-radius: 36px; }
+  h1 { font-size: 2rem; }
+  h2 { font-size: 1.5rem; }
+  .page-welcome h1 { font-size: 1.8rem; }
+  .page-welcome h1::before, .page-welcome h1::after { display: none; }
+  .welcome-img-1, .welcome-img-2 { max-width: 140px; }
+  .gift-card { width: 100px; padding: 1rem 0.4rem; }
+  .gift-emoji-img { width: 60px; height: 60px; }
+  .page-photo { padding: 1.2rem 0.8rem; }
+  .photo-grid, .square-row { gap: 10px; }
+  
+  /* Ukuran & Posisi teks di HP disesuaikan agar pas turun di tengah */
+  .page-message .typewriter p { font-size: 0.82rem; line-height: 1.5; }
+  .page-message .typewriter { top: 26%; left: 14%; right: 14%; bottom: 14%; }
+}
+
+/* ===== MUSIC STYLE ===== */
+.music-toggle-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.85);
+  border: 2px solid #1a2a3f;
+  color: #1a2a3f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1000;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.music-toggle-btn:hover { transform: scale(1.05); background: #ffffff; }
+
+.volume-control-wrap {
+  position: absolute;
+  top: 75px; 
+  right: 22px;
+  z-index: 999;
+  background: rgba(255, 255, 255, 0.85);
+  padding: 6px 10px;
+  border-radius: 20px;
+  border: 2px solid #1a2a3f;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(-10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.volume-control-wrap.show { opacity: 1; visibility: visible; pointer-events: auto; transform: translateY(0); }
+#volumeSlider { width: 60px; cursor: pointer; accent-color: #1a2a3f; }
